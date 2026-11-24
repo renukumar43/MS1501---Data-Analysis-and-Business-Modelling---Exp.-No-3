@@ -45,5 +45,78 @@ A sample business dataset representing the relationship between **Advertising Ex
 
 ##  Program & Output
 
+# 1. Import required Python libraries
+import numpy as np  
+import pandas as pd  
+import matplotlib.pyplot as plt  
+from sklearn.linear_model import LinearRegression  
+
+print("Libraries imported successfully.")    
+
+# 2. Create the business dataset
+advertising = np.array([18, 22, 25, 30, 35, 40, 45, 50, 55, 60])   
+sales = np.array([12, 18, 20, 24, 28, 35, 38, 40, 42, 45])  
+
+df = pd.DataFrame({
+    "Advertising (Lakhs)": advertising,
+    "Sales (Crores)": sales
+})
+
+print("Dataset created successfully.")  
+display(df)  
+
+# 3. Select independent (X) and dependent (Y) variables
+X = df[["Advertising (Lakhs)"]]  # Independent variable (2D)
+Y = df["Sales (Crores)"]         # Dependent variable
+
+print("Independent variable (X):")  
+display(X)  
+
+print("Dependent variable (Y):")  
+display(Y)  
+
+# 4. Build and train the Simple Linear Regression model  
+model = LinearRegression()  
+model.fit(X, Y)  
+
+print("Linear Regression model trained successfully.")  
+
+# 5. Calculate intercept (a) and slope (b)
+a = model.intercept_  
+b = model.coef_[0]  
+
+print("Intercept (a):", round(a, 4))  
+print("Slope (b):", round(b, 4))  
+print(f"Regression equation: Sales = {a:.4f} + ({b:.4f} × Advertising)")  
+
+# 6. Predict sales values and evaluate the model
+predicted_sales = model.predict(X)
+r2_score = model.score(X, Y)
+
+results = df.copy()  
+results["Predicted Sales (Crores)"] = predicted_sales  
+
+print("Actual and predicted sales:")  
+display(results.round(2))  
+
+print("R2 Score:", round(r2_score, 4))  
+
+# 7. Plot actual data points and fitted regression line
+plt.figure(figsize=(8, 5))  
+plt.scatter(X["Advertising (Lakhs)"], Y, label="Actual Sales")  
+plt.plot(X["Advertising (Lakhs)"], predicted_sales, label="Regression Line")  
+plt.title("Simple Linear Regression: Advertising vs Sales")  
+plt.xlabel("Advertising Expenditure (Lakhs)")  
+plt.ylabel("Sales Revenue (Crores)")  
+plt.legend()  
+plt.grid(True)  
+plt.show()  
+
+# 8. Predict sales for a new advertising budget
+new_advertising = pd.DataFrame({"Advertising (Lakhs)": [65]})  
+new_sales_prediction = model.predict(new_advertising)  
+
+print("New advertising budget (Lakhs):", new_advertising.iloc[0, 0])  
+print("Predicted sales revenue (Crores):", round(new_sales_prediction[0], 2))  
 
 ##  Result
