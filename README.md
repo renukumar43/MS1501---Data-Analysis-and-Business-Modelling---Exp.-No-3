@@ -45,5 +45,13 @@ A sample business dataset representing the relationship between **Advertising Ex
 
 ##  Program & Output
 
+# 1. Import required Python libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+print("Libraries imported successfully.")
+
 
 ##  Result
