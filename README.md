@@ -120,4 +120,6 @@ print("New advertising budget (Lakhs):", new_advertising.iloc[0, 0])
 print("Predicted sales revenue (Crores):", round(new_sales_prediction[0], 2))
 
 
+
+
 ##  Result
