@@ -114,7 +114,7 @@ plt.show()
 
 # 8. Predict sales for a new advertising budget  
 new_advertising = pd.DataFrame({"Advertising (Lakhs)": [65]})  
-new_sales_prediction = model.predict(new_advertising)  
+new_sales_prediction = model.predict(new_advertising)    
 
 print("New advertising budget (Lakhs):", new_advertising.iloc[0, 0])  
 print("Predicted sales revenue (Crores):", round(new_sales_prediction[0], 2))
